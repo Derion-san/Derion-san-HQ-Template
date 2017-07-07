@@ -2,25 +2,37 @@
 <!DOCTYPE html>
 <html expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
   <head>
-<link expr:href='data:blog.url' rel='canonical'/>
 <!-- The design and the code is made by Zsolt 'Derion-san' M. under CreativeCommons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) https://creativecommons.org/licenses/by-nc-nd/4.0/ license. Every 3rd party code and content belong to their respective owners with their own licenses.-->
+<link expr:href='data:blog.url' rel='canonical'/>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
     <title><data:view.title.escaped/></title>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'/>
-	<link crossorigin='anonymous' href='https://unpkg.com/purecss@1.0.0/build/pure-min.css' integrity='sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w' rel='stylesheet'/>
+	<link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/pure-min.css' rel='stylesheet'/>
+    <link href='https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css' rel='stylesheet'/>
    <b:include data='blog' name='all-head-content'/>
         <b:skin><![CDATA[
+
+
+
+
 body{
 	font-family: 'Roboto', sans-serif;
 }
+.leftPanel{
+	background-color: #212121;
+}
 
+.mainMenuElement{
+ padding: 1em;
+}
 
     ]]></b:skin>
   </head>
-  <body>
+  <body class='pure-g'>
 
-<b:section id='main' showaddelement='yes'>
-  <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
+    
+<b:section class='pure-u-1' id='main' showaddelement='yes'>
+  <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog' version='1'>
     <b:widget-settings>
       <b:widget-setting name='showDateHeader'>true</b:widget-setting>
       <b:widget-setting name='style.textcolor'>#000000</b:widget-setting>
@@ -43,9 +55,9 @@ body{
       <b:widget-setting name='showReactions'>false</b:widget-setting>
     </b:widget-settings>
     <b:includable id='main' var='top'>
-  <b:if cond='!data:mobile'>
+  
     <!-- posts -->
-    <div class='blog-posts hfeed'>
+    <div class='blog-posts hfeed pure-g'>
 
       <b:include data='top' name='status-message'/>
 
@@ -54,19 +66,27 @@ body{
           &lt;/div&gt;&lt;/div&gt;
         </b:if>
         <b:if cond='data:post.isDateStart'>
-          &lt;div class=&quot;date-outer&quot;&gt;
+			<b:if cond='data:blog.pageType == &quot;item&quot;'>
+				&lt;div class=&quot;date-outer pure-u-1-1&quot;&gt;
+			<b:else/> 
+				&lt;div class=&quot;date-outer pure-u-1 pure-u-sm-1-2 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-1-4 &quot;&gt;
+				
+			</b:if>
+          
         </b:if>
         <b:if cond='data:post.dateHeader'>
+			&lt;div class=&quot;mainMenuElement"&quot;&gt;
           <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
         </b:if>
         <b:if cond='data:post.isDateStart'>
+
           &lt;div class=&quot;date-posts&quot;&gt;
         </b:if>
         <div class='post-outer'>
           <b:include data='post' name='post'/>
           <b:include cond='data:blog.pageType in {&quot;static_page&quot;,&quot;item&quot;}' data='post' name='comment_picker'/>
         </div>
-
+		&lt;/div&gt;
         <!-- Ad -->
         <b:if cond='data:post.includeAd'>
           <div class='inline-ad'>
@@ -75,9 +95,11 @@ body{
         </b:if>
       </b:loop>
       <b:if cond='data:numPosts != 0'>
-        &lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+		&lt;/div&gt;
       </b:if>
     </div>
+	
 
     <!-- navigation -->
     <b:include name='nextprev'/>
@@ -85,11 +107,9 @@ body{
     <!-- feed links -->
     <b:include name='feedLinks'/>
 
-  <b:else/>
-    <b:include name='mobile-main'/>
-  </b:if>
 
-  <b:include cond='data:top.showPlusOne' name='googlePlusBootstrap'/>
+
+  
 </b:includable>
     <b:includable id='backlinkDeleteIcon' var='backlink'>
   <span expr:class='&quot;item-control &quot; + data:backlink.adminClass'>
@@ -409,7 +429,7 @@ body{
   <div class='clear'/>
 </b:includable>
     <b:includable id='mobile-post' var='post'>
-  <div class='date-outer'>
+  <div class='date-outer pure-u-1-3'>
     <b:if cond='data:post.dateHeader'>
       <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
     </b:if>
