@@ -66,19 +66,33 @@ table {
 
 body{
 	font-family: 'Roboto', sans-serif;
-	padding: 1em;
+	
 }
 .leftPanel{
-	background-color: #212121;
+	background-color: #c8e6c9;
 }
 
 .mainMenuElement{
  
-	background-color: blue;
+	background-color: #66bb6a;
 }
 .date-outerInner{
-padding: 1em;
+margin: 1em;
+overflow: hidden;
+    position: relative;
+	min-height: 33vh;
+	height: 33vh;
+    max-height: 33vh;
+
+	-webkit-box-shadow: 8px 8px 29px 3px rgba(0,0,0,0.66);
+	-moz-box-shadow: 8px 8px 29px 3px rgba(0,0,0,0.66);
+	box-shadow: 8px 8px 29px 3px rgba(0,0,0,0.66);
 }
+
+.mainMenuElement{
+	height: 100%;
+}
+
     ]]></b:skin>
   </head>
   <body class='pure-g'>
@@ -120,8 +134,8 @@ padding: 1em;
         </b:if>
         <b:if cond='data:post.isDateStart'>
 			<b:if cond='data:blog.pageType == &quot;item&quot;'>
-				&lt;div class=&quot;date-outer pure-u-1-1&quot;&gt;
-				&lt;div class=&quot;date-outerInner&quot;&gt;
+				&lt;div class=&quot;date-outerContent&quot;&gt;
+				&lt;div class=&quot;date-outerInnerContent&quot;&gt;
 			<b:else/> 
 				&lt;div class=&quot;date-outer pure-u-1 pure-u-sm-1-2 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-1-4 &quot;&gt;
 				&lt;div class=&quot;date-outerInner&quot;&gt;
@@ -168,11 +182,7 @@ padding: 1em;
   
 </b:includable>
     <b:includable id='backlinkDeleteIcon' var='backlink'>
-  <span expr:class='&quot;item-control &quot; + data:backlink.adminClass'>
-    <a expr:href='data:backlink.deleteUrl' expr:title='data:top.deleteBacklinkMsg'>
-      <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
-    </a>
-  </span>
+
 </b:includable>
     <b:includable id='backlinks' var='post'>
   <a name='links'/><h4><data:post.backlinksLabel/></h4>
@@ -224,17 +234,7 @@ padding: 1em;
   </div>
 </b:includable>
     <b:includable id='commentDeleteIcon' var='comment'>
-  <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
-    <b:if cond='data:showCmtPopup'>
-      <div class='goog-toggle-button'>
-        <div class='goog-inline-block comment-action-icon'/>
-      </div>
-    <b:else/>
-      <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:top.deleteCommentMsg'>
-        <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
-      </a>
-    </b:if>
-  </span>
+  
 </b:includable>
     <b:includable id='comment_count_picker' var='post'>
   <b:if cond='data:post.commentSource == 1'>
@@ -744,11 +744,7 @@ padding: 1em;
 </b:includable>
     <b:includable id='postQuickEdit' var='post'>
   <b:if cond='data:post.editUrl'>
-    <span expr:class='&quot;item-control &quot; + data:post.adminClass'>
-      <a expr:href='data:post.editUrl' expr:title='data:top.editPostMsg'>
-        <img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
-      </a>
-    </span>
+    
   </b:if>
 </b:includable>
     <b:includable id='shareButtons' var='post'>
